@@ -439,8 +439,20 @@ document.addEventListener('DOMContentLoaded', () => {
         submitBtn.innerHTML = '<span>Sending...</span><i class="fas fa-spinner fa-spin"></i>';
         submitBtn.disabled = true;
 
-        // Simulate submission (replace with actual form service)
-        setTimeout(() => {
+        // Send data to FormSubmit via AJAX
+        const formData = new FormData(contactForm);
+        
+        // Add a hidden field to disable captchas for AJAX requests if desired, though we'll keep it simple
+        
+        fetch("https://formsubmit.co/ajax/shridharkalasgonda@acpce.ac.in", {
+            method: "POST",
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
             submitBtn.innerHTML = '<span>Message Sent!</span><i class="fas fa-check"></i>';
             submitBtn.style.background = 'linear-gradient(135deg, #10b981, #06b6d4)';
 
@@ -449,8 +461,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 submitBtn.style.background = '';
                 submitBtn.disabled = false;
                 contactForm.reset();
-            }, 2500);
-        }, 1500);
+            }, 3000);
+        })
+        .catch(error => {
+            submitBtn.innerHTML = '<span>Error! Try Again</span><i class="fas fa-exclamation-circle"></i>';
+            submitBtn.style.background = 'linear-gradient(135deg, #ef4444, #f59e0b)';
+            
+            setTimeout(() => {
+                submitBtn.innerHTML = originalHTML;
+                submitBtn.style.background = '';
+                submitBtn.disabled = false;
+            }, 3000);
+            console.error("Form error:", error);
+        });
     });
 
     // ==========================================
