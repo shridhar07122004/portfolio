@@ -11,6 +11,7 @@ import {
   Mail,
   MapPin,
   Menu,
+  Phone,
   Send,
   Sparkles,
   Terminal,
@@ -35,6 +36,7 @@ const stats = [
 ]
 
 const contactEmail = 'mkalasgonda19@gmail.com'
+const contactPhone = '+91 9004789940'
 
 const skills = [
   {
@@ -180,6 +182,13 @@ const contacts = [
     tone: 'coral',
   },
   {
+    label: 'Phone',
+    value: contactPhone,
+    href: 'tel:+919004789940',
+    icon: Phone,
+    tone: 'blue',
+  },
+  {
     label: 'LinkedIn',
     value: 'Connect on LinkedIn',
     href: 'https://www.linkedin.com/in/shridhar-kalasgonda-86b03a295/',
@@ -266,8 +275,8 @@ function PortfolioLoader() {
           <BrainCircuit size={72} strokeWidth={2.8} />
         </motion.div>
 
-        <h2>Let's dive into my portfolio</h2>
-        <p>Initializing AI builds...</p>
+        <h2>Opening the build space</h2>
+        <p>Initializing...</p>
 
         <div className="loader-progress" aria-hidden="true">
           <motion.span
@@ -1003,6 +1012,13 @@ function Contact() {
               <span>
                 <small>Email</small>
                 <strong>{contactEmail}</strong>
+              </span>
+            </p>
+            <p>
+              <Phone size={18} aria-hidden="true" />
+              <span>
+                <small>Phone</small>
+                <strong>{contactPhone}</strong>
               </span>
             </p>
           </div>
