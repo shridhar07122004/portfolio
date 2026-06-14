@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import {
   ArrowUp,
   ArrowUpRight,
@@ -224,6 +224,61 @@ function LinkedInLogo({ size = 24, ...props }) {
     >
       <path d="M20.4 20.5h-3.6v-5.6c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9v5.7H9.4V9h3.4v1.6h0.1c0.5-0.9 1.6-1.9 3.4-1.9 3.6 0 4.3 2.4 4.3 5.5v6.3h-0.2ZM5.3 7.4c-1.1 0-2.1-0.9-2.1-2.1s0.9-2.1 2.1-2.1 2.1 0.9 2.1 2.1-0.9 2.1-2.1 2.1ZM7.1 20.5H3.6V9h3.6v11.5ZM22.2 0H1.8C0.8 0 0 0.8 0 1.7v20.5C0 23.2 0.8 24 1.8 24h20.5c1 0 1.8-0.8 1.8-1.8V1.7C24 0.8 23.2 0 22.2 0Z" />
     </svg>
+  )
+}
+
+function PortfolioLoader() {
+  return (
+    <motion.div
+      className="portfolio-loader"
+      initial={{ opacity: 1 }}
+      exit={{ opacity: 0, y: -18 }}
+      transition={{ duration: 0.5, ease: 'easeInOut' }}
+      role="status"
+      aria-live="polite"
+      aria-label="Loading portfolio"
+    >
+      <motion.div
+        className="loader-card"
+        initial={{ opacity: 0, y: 28, rotate: -1.5, scale: 0.94 }}
+        animate={{ opacity: 1, y: 0, rotate: 0, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.96 }}
+        transition={{ type: 'spring', stiffness: 180, damping: 18 }}
+      >
+        <span className="loader-corner" aria-hidden="true" />
+        <div className="loader-topbar">
+          <div className="loader-dots" aria-hidden="true">
+            <span />
+            <span />
+            <span />
+          </div>
+          <strong>SYS_INIT</strong>
+        </div>
+
+        <div className="loader-divider" />
+
+        <motion.div
+          className="loader-brain"
+          aria-hidden="true"
+          animate={{ y: [0, -7, 0], rotate: [-2, 2, -2] }}
+          transition={{ duration: 1.35, repeat: Infinity, ease: 'easeInOut' }}
+        >
+          <BrainCircuit size={72} strokeWidth={2.8} />
+        </motion.div>
+
+        <h2>Let's dive into my portfolio</h2>
+        <p>Initializing AI builds...</p>
+
+        <div className="loader-progress" aria-hidden="true">
+          <motion.span
+            initial={{ scaleX: 0 }}
+            animate={{ scaleX: 1 }}
+            transition={{ duration: 1.45, ease: [0.16, 1, 0.3, 1] }}
+          />
+          <em>100%</em>
+        </div>
+      </motion.div>
+    </motion.div>
   )
 }
 
@@ -1089,8 +1144,16 @@ function Footer() {
 }
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true)
+
+  useEffect(() => {
+    const timer = window.setTimeout(() => setIsLoading(false), 1650)
+    return () => window.clearTimeout(timer)
+  }, [])
+
   return (
     <>
+      <AnimatePresence>{isLoading && <PortfolioLoader />}</AnimatePresence>
       <Header />
       <main>
         <Hero />
