@@ -330,7 +330,17 @@ function HeroVisual() {
           whileHover={{ y: -10, rotate: 0, scale: 1.025 }}
         >
           <div className="profile-image-wrap">
-            <img src="/shridhar-profile.png" alt="Shridhar M Kalasgonda" />
+            <picture>
+              <source srcSet="/shridhar-profile.webp" type="image/webp" />
+              <img
+                src="/shridhar-profile.png"
+                alt="Shridhar M Kalasgonda"
+                width="720"
+                height="720"
+                decoding="async"
+                fetchPriority="high"
+              />
+            </picture>
           </div>
           <div className="hero-skill-tags" aria-label="Focus areas">
             <span>AI</span>

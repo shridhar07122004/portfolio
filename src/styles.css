@@ -373,18 +373,8 @@ h1 {
 }
 
 .hero-visual::after {
-  position: absolute;
-  top: 70px;
-  right: 58px;
-  width: 118px;
-  height: 118px;
-  border-radius: 50%;
-  background:
-    radial-gradient(circle, rgba(95, 191, 143, 0.25), transparent 62%),
-    radial-gradient(rgba(17, 17, 17, 0.3) 1px, transparent 1px);
-  background-size: auto, 10px 10px;
-  content: "";
-  opacity: 0.75;
+  display: none;
+  content: none;
 }
 
 .portrait-core {
@@ -471,10 +461,14 @@ h1 {
   z-index: 1;
 }
 
+.profile-image-wrap picture,
 .profile-image-wrap img {
   display: block;
   width: 100%;
   height: 100%;
+}
+
+.profile-image-wrap img {
   object-fit: cover;
   object-position: 50% 35%;
   filter: saturate(1.06) contrast(1.03);
