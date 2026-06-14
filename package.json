@@ -1,0 +1,22 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "Shridhar M Kalasgonda's clean AI and Data Science portfolio.",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "vite --host 127.0.0.1",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.3.1",
+    "@vitejs/plugin-react": "^6.0.2",
+    "framer-motion": "^12.40.0",
+    "lucide-react": "^1.18.0",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "tailwindcss": "^4.3.1",
+    "vite": "^8.0.16"
+  }
+}
